@@ -1,7 +1,6 @@
 # โปรเจคฝึกฝน: ระบบจัดการหนังสือ (Book Management System)
 
 โปรเจคนี้เป็นโจทย์สำหรับฝึกฝนการพัฒนาระบบเว็บแอปพลิเคชันแบบ Full Stack โดยใช้เทคโนโลยีที่หลากหลาย เพื่อสร้างระบบจัดการหนังสืออย่างง่าย
-
 ## เทคโนโลยีที่ใช้
 
 ### Backend
@@ -35,9 +34,10 @@
 - Visual Studio Code พร้อม Extension "Remote - Containers"
 - Git
 
-### การเริ่มต้นโปรเจค
+### วิธีการติดตั้ง
 
-1. Clone โปรเจคนี้
+#### การใช้งานกับ VS Code DevContainer
+1. Clone โปรเจค
 
 2. เริ่มต้นด้วย VS Code DevContainer
    - เปิด VS Code
@@ -45,9 +45,17 @@
    - เลือกโฟลเดอร์ของโปรเจค
    - รอให้ VS Code สร้าง Container และติดตั้งส่วนประกอบต่างๆ
 
-3. เริ่มต้นใช้งาน
-   - Backend: http://localhost:8000
-   - Frontend: http://localhost:3000
+#### การใช้งานด้วย Docker Compose (ไม่ใช้ DevContainer)
+```bash
+docker-compose up -d
+```
+
+### การเข้าถึงระบบ
+- Backend: http://localhost:8000
+- Frontend: http://localhost:3000
+- API Endpoints: http://localhost:8000/api/
+- Admin Dashboard: http://localhost:8000/admin/ (user: admin, password: admin)
+- GraphQL Playground: http://localhost:8000/graphql/
 
 ## โครงสร้างโปรเจค
 
@@ -67,6 +75,20 @@ book-management-system/
 ├── setup.sh                   # สคริปต์ตั้งค่าโครงสร้างโปรเจค
 └── README.md
 ```
+
+## API Documentation
+
+### REST API Endpoints
+
+| Endpoint | Method | Description | Authentication |
+|----------|--------|-------------|----------------|
+| `/api/books/` | GET | รายการหนังสือทั้งหมด | ไม่ต้องการ |
+| `/api/books/:id/` | GET | รายละเอียดหนังสือ | ไม่ต้องการ |
+| `/api/books/` | POST | เพิ่มหนังสือใหม่ | ต้องการ (Admin) |
+| `/api/books/:id/` | PUT | อัปเดตข้อมูลหนังสือ | ต้องการ (Admin) |
+| `/api/books/:id/` | DELETE | ลบหนังสือ | ต้องการ (Admin) |
+| `/api/auth/token/` | POST | ขอรับ JWT Token | ไม่ต้องการ |
+| `/api/auth/register/` | POST | ลงทะเบียนผู้ใช้ใหม่ | ไม่ต้องการ |
 
 ## เป้าหมายการเรียนรู้
 
@@ -96,6 +118,14 @@ book-management-system/
 - เขียนเอกสารและความคิดเห็นในโค้ดเพื่อให้เข้าใจง่าย
 - ทดสอบระบบอย่างสม่ำเสมอเพื่อให้แน่ใจว่าทุกอย่างทำงานได้ถูกต้อง
 
+## การแก้ปัญหาเบื้องต้น (Troubleshooting)
+
+| ปัญหา | วิธีแก้ไข |
+|-------|----------|
+| Container ไม่สามารถเริ่มต้นได้ | ตรวจสอบ Docker service และ log ด้วยคำสั่ง `docker-compose logs` |
+| เกิด error ตอน migrations | ลบไฟล์ migrations และสร้างใหม่ด้วย `python manage.py makemigrations` |
+| Frontend ไม่สามารถเชื่อมต่อกับ Backend | ตรวจสอบค่า REACT_APP_API_URL ใน environment variables |
+
 ## ฟีเจอร์เพิ่มเติม (หากมีเวลาเพียงพอ)
 
 1. การค้นหาหนังสือ (ตามชื่อ, ผู้แต่ง, หมวดหมู่)
@@ -104,6 +134,7 @@ book-management-system/
 4. การอัปโหลดรูปภาพปกหนังสือ (แทนการใช้ URL)
 5. การนำเข้าข้อมูลหนังสือจาก CSV
 
+
 ## การอ้างอิง
 
 - [Django Documentation](https://docs.djangoproject.com/)
@@ -111,3 +142,6 @@ book-management-system/
 - [Graphene Django](https://docs.graphene-python.org/projects/django/en/latest/)
 - [React Documentation](https://reactjs.org/docs/getting-started.html)
 - [Docker Documentation](https://docs.docker.com/)
+
+## License
+MIT License - ดูรายละเอียดได้ที่ [LICENSE](LICENSE) file
