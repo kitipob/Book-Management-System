@@ -48,7 +48,6 @@
 3. เริ่มต้นใช้งาน
    - Backend: http://localhost:8000
    - Frontend: http://localhost:3000
-   - Database: postgresql://postgres:postgres@db:5432/bookmanagement
 
 ## โครงสร้างโปรเจค
 
