@@ -126,15 +126,6 @@ book-management-system/
 | เกิด error ตอน migrations | ลบไฟล์ migrations และสร้างใหม่ด้วย `python manage.py makemigrations` |
 | Frontend ไม่สามารถเชื่อมต่อกับ Backend | ตรวจสอบค่า REACT_APP_API_URL ใน environment variables |
 
-## ฟีเจอร์เพิ่มเติม (หากมีเวลาเพียงพอ)
-
-1. การค้นหาหนังสือ (ตามชื่อ, ผู้แต่ง, หมวดหมู่)
-2. ระบบให้คะแนนหนังสือ (Rating)
-3. ระบบความคิดเห็น (Comments)
-4. การอัปโหลดรูปภาพปกหนังสือ (แทนการใช้ URL)
-5. การนำเข้าข้อมูลหนังสือจาก CSV
-
-
 ## การอ้างอิง
 
 - [Django Documentation](https://docs.djangoproject.com/)
